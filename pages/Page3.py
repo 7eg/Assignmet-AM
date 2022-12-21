@@ -88,4 +88,4 @@ if plots:
     st.altair_chart(alt.vconcat(*plots))
     #combined_plot = alt.layer(*plots)  combine all in one chart
     #st.altair_chart(combined_plot)
-st.balloons()
+

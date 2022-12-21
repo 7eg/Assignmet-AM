@@ -58,4 +58,4 @@ fig = px.scatter(
     size_max=60,
 )
 fig
-st.balloons()
+
