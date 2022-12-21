@@ -23,7 +23,7 @@ alt.data_transformers.disable_max_rows()
 st.title('Data Analized')
 
 
-playStore = pd.read_csv('assignment/googleplaystore.csv')
+playStore = pd.read_csv('googleplaystore.csv')
 playStore['Price'] = playStore['Price'].str.replace('$', '')
 playStore['Price'] = playStore['Price'].str.replace('Everyone', '0')
 playStore['Reviews'] = playStore['Reviews'].str.replace('M', '')
@@ -58,4 +58,4 @@ fig = px.scatter(
     size_max=60,
 )
 fig
-
+st.balloons()
