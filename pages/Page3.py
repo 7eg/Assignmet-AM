@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st 
 import matplotlib.pyplot as plt
 import plotly.express as px
+# the foother for showing names Abdulaziz and Muhannad
 st.markdown(
 """
 <style>
@@ -32,7 +33,7 @@ playStore.drop(playStore[playStore['Rating'] == 19. ].index, inplace=True)
 playStore.dropna(inplace=True)
 playStore["Last Updated"] = pd.to_datetime(playStore["Last Updated"], format="%B %d, %Y")
 playStore["Year"] = playStore["Last Updated"].dt.year
-playStoreApp = st.selectbox("Select app Category of the App", playStore['Category'].unique())
+playStoreApp = st.selectbox("Select app Type of the App", playStore['Type'].unique())
 scatter_plot = st.checkbox("scatter plot")
 line_plot = st.checkbox("line plot")
 histogram_plot = st.checkbox("histogram plot")
@@ -45,7 +46,7 @@ years = playStore["Year"].unique()
 plots = []
 
 if scatter_plot:
-    plots.append(alt.Chart(playStore[playStore['Category'] == playStoreApp],width=800, height=600).mark_circle().encode(
+    plots.append(alt.Chart(playStore[playStore['Type'] == playStoreApp],width=800, height=600).mark_circle().encode(
       x = 'Installs',
       y = 'Reviews',
       color='App:N',
@@ -53,7 +54,7 @@ if scatter_plot:
   ).interactive())
 
 if line_plot:
-    plots.append(alt.Chart(playStore[playStore['Category'] == playStoreApp],width=800, height=600).mark_line().encode(
+    plots.append(alt.Chart(playStore[playStore['Type'] == playStoreApp],width=800, height=600).mark_line().encode(
       x = 'Reviews',
       y = 'Installs',
       color='Content Rating:N',
@@ -61,7 +62,7 @@ if line_plot:
   ).interactive())
 
 if histogram_plot:
-    plots.append(alt.Chart(playStore[playStore['Category'] == playStoreApp],width=800, height=600).mark_bar().encode(
+    plots.append(alt.Chart(playStore[playStore['Type'] == playStoreApp],width=800, height=600).mark_bar().encode(
       x = 'Reviews',
       y = 'count()',
        color='App:N',
@@ -69,7 +70,7 @@ if histogram_plot:
   ).interactive())
 
 if bar_plot:
-    plots.append(alt.Chart(playStore[playStore['Category'] == playStoreApp],width=800, height=600).mark_bar().encode(
+    plots.append(alt.Chart(playStore[playStore['Type'] == playStoreApp],width=800, height=600).mark_bar().encode(
       y = 'Reviews',
       x = 'App',
        color='App:N',
@@ -77,7 +78,7 @@ if bar_plot:
   ).interactive())
 
 if heatmap_plot:
-    plots.append(alt.Chart(playStore[playStore['Category'] == playStoreApp],width=800, height=600).mark_rect().encode(
+    plots.append(alt.Chart(playStore[playStore['Type'] == playStoreApp],width=800, height=600).mark_rect().encode(
     alt.X('Rating:Q', bin=alt.Bin(maxbins=60)),
     alt.Y('Reviews:Q', bin=alt.Bin(maxbins=40)),
     alt.Color('Rating:Q', scale=alt.Scale(scheme='greenblue')),

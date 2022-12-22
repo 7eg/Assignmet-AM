@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(
   page_title="Assignment", )
 
-
+# the foother for showing names Abdulaziz and Muhannad
 st.markdown(
 """
 <style>
@@ -23,10 +23,12 @@ st.markdown(
 unsafe_allow_html=True,
 )
 
-
+# Disable the maximum row size which is 5k because the dataset we use is 10k rows
 alt.data_transformers.disable_max_rows()
 st.markdown('### Choose color for the text')
+# color picker 
 selected_color = st.color_picker('','#8E3E3E')
+# cahce for storing color picked 
 @st.cache
 def defColor(cl):
   pl = cl
@@ -34,7 +36,7 @@ def defColor(cl):
 
 colo = defColor(selected_color)
 
-
+# Intro
 st.title('`Google Play Store Apps`')
 st.markdown('### Web scraped data of 10k Play Store apps for analysing the Android market.')
 st.markdown(f"<span style='color: {colo}'>The Google Play Store Apps dataset on Kaggle is a collection of data on over 10,000 mobile applications from the Google Play Store. The data was collected in August 2018, and includes information on each app's rating, category, number of reviews, and size. The dataset is useful for anyone interested in analyzing mobile app trends or building predictive models for app success.</span>", unsafe_allow_html=True)
@@ -52,7 +54,7 @@ st.markdown(f"<span style='color: {colo}'>10 - Genres - The genres the app belon
 st.markdown(f"<span style='color: {colo}'>11 - Last Updated - The date when the app was last updated on the Play Store.</span>", unsafe_allow_html=True)
 st.markdown(f"<span style='color: {colo}'>12 - Current Ver - The current version of the app.</span>", unsafe_allow_html=True)
 st.markdown(f"<span style='color: {colo}'>13 - Android Ver - The minimum required Android version for the app.</span>", unsafe_allow_html=True)
-
+# Findings 
 st.subheader('`Findings`')
 st.write(f"""<span style='color: {colo}'>
 By exploring the category field in the dataset, it could be determined which categories of apps are the most popular among users. For example,

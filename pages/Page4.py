@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st 
 import matplotlib.pyplot as plt
 import plotly.express as px
+# the foother for showing names Abdulaziz and Muhannad
 st.markdown(
 """
 <style>
@@ -30,23 +31,28 @@ playStore['Reviews'] = playStore['Reviews'].str.replace('M', '')
 playStore = playStore.astype({'Price':float,'Reviews':float})
 playStore.drop(playStore[playStore['Rating'] == 19. ].index, inplace=True)
 playStore.dropna(inplace=True)
+# converting the Last Updated column from Object to date 
 playStore["Last Updated"] = pd.to_datetime(playStore["Last Updated"], format="%B %d, %Y")
+# getting the year only column 
 playStore["Year"] = playStore["Last Updated"].dt.year
 
 
-
+# sub header 
 st.subheader('Pie plot of a sample data of 10 apps and their Rating')
 st.markdown('#### Column = Rating & App')
+# getting sample of data 10 rows for the following pie chart
 sampledata  = playStore.head(10).copy()
 fig, ax = plt.subplots()
 explode = (0, 0, 0.4, 0,0,0,0,0,0,0.4)  
 ax.pie(sampledata['Rating'], labels=sampledata['App'],explode=explode,
         shadow=True, startangle=90,autopct='%1.1f%%')
+# showing the chart
 st.pyplot(fig)
 
-
+# sub header 
 st.subheader('Bubble Chart of a sample data of 30 apps ')
 st.markdown('#### Column = Review & Installs')
+# Bubble chart 
 fig = px.scatter(
     playStore.head(30),
     x="Reviews",
@@ -57,5 +63,8 @@ fig = px.scatter(
     log_x=True,
     size_max=60,
 )
+# showing the bubble chart
 fig
+
+# showing balloons 
 st.balloons()
